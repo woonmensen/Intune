@@ -13,4 +13,7 @@ foreach ($file in $files) {
     write-host "Reg Import $file : $out"
 }
 
+# Verwijder het tweede Chrome ikoon op de desktop
+Remove-Item "C:\Users\Public\Desktop\Google Chrome.lnk" -ErrorAction Ignore
+
 Stop-Transcript

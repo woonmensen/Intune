@@ -13,7 +13,9 @@ foreach ($file in $files) {
     write-host "Reg Import $file : $out"
 }
 
-# Verwijder het tweede Chrome ikoon op de desktop
-Remove-Item "C:\Users\Public\Desktop\Google Chrome.lnk" -ErrorAction Ignore
+# Verwijder overbodige ikonen van het bureaublad
+Remove-Item "$env:public\Desktop\Google Chrome.lnk" -ErrorAction Ignore
+Remove-Item "$env:public\Desktop\PDF-XChange Editor.lnk" -ErrorAction Ignore
+Remove-Item "$env:userprofile\Desktop\Microsoft Edge.lnk" -ErrorAction Ignore
 
 Stop-Transcript

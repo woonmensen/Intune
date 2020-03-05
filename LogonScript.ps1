@@ -18,4 +18,13 @@ Remove-Item "$env:public\Desktop\Google Chrome.lnk" -ErrorAction Ignore
 Remove-Item "$env:public\Desktop\PDF-XChange Editor.lnk" -ErrorAction Ignore
 Remove-Item "$env:userprofile\Desktop\Microsoft Edge.lnk" -ErrorAction Ignore
 
+# Maak een default handtekening in Outlook, indien deze nog niet bestaat.
+# Niet overschrijven, de gebruiker zal deze aangepast hebben.
+$s = "$basedir\Outlook\woonmensen.htm"
+if (-not (Test-Path "$env:userprofile\Application Data\Microsoft\Handtekeningen\woonmensen.htm")){
+	write-host "Nieuwe handtekening wordt gekopieerd"
+	copy "$s" "$env:userprofile\Application Data\Microsoft\Handtekeningen"
+	copy "$s" "$env:userprofile\Application Data\Microsoft\Signatures"
+}
+
 Stop-Transcript

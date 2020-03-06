@@ -23,8 +23,8 @@ Remove-Item "$env:userprofile\Desktop\Microsoft Edge.lnk" -ErrorAction Ignore
 $s = "$basedir\Outlook\woonmensen.htm"
 if (-not (Test-Path "$env:userprofile\Application Data\Microsoft\Handtekeningen\woonmensen.htm")){
 	write-host "Nieuwe handtekening wordt gekopieerd"
-	copy "$s" "$env:userprofile\Application Data\Microsoft\Handtekeningen"
-	copy "$s" "$env:userprofile\Application Data\Microsoft\Signatures"
+	copy "$s" "$env:userprofile\Application Data\Microsoft\Handtekeningen\woonmensen.htm"
+	copy "$s" "$env:userprofile\Application Data\Microsoft\Signatures\woonmensen.htm"
 }
 
 Stop-Transcript

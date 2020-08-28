@@ -36,7 +36,7 @@ if (test-path "$s"){
     xcopy "$s" "$t" /D /Q /Y /R /C /K
     
     $s = "$basedir\WordSjablonen\Sjablonen"
-    $t = "$ENV:APPDATA\Roaming\Microsoft\WM-Sjablonen"
+    $t = "$ENV:APPDATA\Microsoft\WM-Sjablonen"
     xcopy "$s" "$t" /D /Q /Y /R /C /K /S /I
 }
 

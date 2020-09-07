@@ -32,8 +32,8 @@ if (-not (Test-Path "$t")){
 $s = "$basedir\WordSjablonen\Startup\wm_gen.dotm"
 if (test-path "$s"){
     # Source path bestaat, we bevinden ons in ons domein, copy actie starten:
-    $t = "$ENV:APPDATA\Microsoft\Word\Startup\wm_gen.dotm"
-    xcopy "$s" "$t" /D /Q /Y /R /C /K
+    $t = "$ENV:APPDATA\Microsoft\Word\Startup"
+    xcopy "$s" "$t" /D /Q /Y /R /C /K /I
     
     $s = "$basedir\WordSjablonen\Sjablonen"
     $t = "$ENV:APPDATA\Microsoft\WM-Sjablonen"

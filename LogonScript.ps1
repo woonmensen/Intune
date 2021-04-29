@@ -30,7 +30,7 @@ if (-not (Test-Path "$t")){
 
 # Pas de verwijzing naar het plaatje in de handtekening aan, als dat nog niet gebeurd is.
 # Op deze wijze overschrijven we geen persoonlijke aanpassingen.
-$src = "$basedir\Outlook\woonmensen.htm"
+$src = "$ENV:APPDATA\Microsoft\Signatures\woonmensen.htm"
 $fstr = "http://home.woonmensen.nl/woonmensen.png"
 $tstr = "https://www.woonmensen.nl/media/1112/handtekening.png"
 

@@ -28,6 +28,18 @@ if (-not (Test-Path "$t")){
 	copy "$s" "$t"
 }
 
+# Pas de verwijzing naar het plaatje in de handtekening aan, als dat nog niet gebeurd is.
+# Op deze wijze overschrijven we geen persoonlijke aanpassingen.
+$src = "$basedir\Outlook\woonmensen.htm"
+$fstr = "http://home.woonmensen.nl/woonmensen.png"
+$tstr = "https://www.woonmensen.nl/media/1112/handtekening.png"
+
+if ((Get-Content $src | %{$_ -match $fstr}) -contains $true) {
+	write-host "De handtekening wordt gewijzigd, verwijzing naar de publieke website"
+    $s = [RegEx]::escape($fstr)
+    (Get-Content $src) -replace $s,$tstr | Set-Content $src
+}
+
 # Word Sjablonen verversen indien aangepast:
 $s = "$basedir\WordSjablonen\Startup\wm_gen.dotm"
 if (test-path "$s"){

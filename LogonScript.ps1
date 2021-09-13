@@ -50,7 +50,14 @@ if ((Get-Content $src | %{$_ -match $fstr}) -contains $true) {
 # Word Sjablonen verversen indien aangepast:
 $s = "$basedir\WordSjablonen\Startup\wm_gen.dotm"
 if (test-path "$s"){
-    # Source path bestaat, we bevinden ons in ons domein, copy actie starten:
+    # Source path bestaat, we bevinden ons in ons domein.
+	# Oude sjablonen verwijderen (we gebruiken geen /MIR want we willen geen eigen sjablonen van users verwijderen:
+	$oude_sjablonen = "MT\Beslisdocument MT.dotm","MT\20210708 Format voortgangsrapportage MT.dotm","MT\20210708 Format memo MT.dotm","MT\20210708 Format beslisdocument MT.dotm"
+	foreach ($f in $oude_sjablonen){
+		Remove-Item "$ENV:APPDATA\Microsoft\WM-Sjablonen\$f" -ErrorAction Ignore
+	}
+	
+	# Copy actie starten:
     $t = "$ENV:APPDATA\Microsoft\Word\Startup"
     xcopy "$s" "$t" /D /Q /Y /R /C /K /I
     

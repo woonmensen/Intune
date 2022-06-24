@@ -30,19 +30,13 @@ if (-not (Test-Path "$t")){
 
 # Pas de verwijzing naar het plaatje in de handtekening aan, als dat nog niet gebeurd is.
 # Op deze wijze overschrijven we geen persoonlijke aanpassingen.
+# Per 24-06-2022 is de handtekening niet meer https://www.woonmensen.nl/maillogo, maar is het https://www.woonmensen.nl/handtekening/
 $src = "$ENV:APPDATA\Microsoft\Signatures\woonmensen.htm"
-$tstr = "https://www.woonmensen.nl/maillogo"
+$tstr = "https://www.woonmensen.nl/handtekening/"
 
-$fstr = "http://home.woonmensen.nl/woonmensen.png"
+$fstr = "https://www.woonmensen.nl/maillogo"
 if ((Get-Content $src | %{$_ -match $fstr}) -contains $true) {
-	write-host "De handtekening wordt gewijzigd, verwijzing naar de publieke website"
-    $s = [RegEx]::escape($fstr)
-    (Get-Content $src) -replace $s,$tstr | Set-Content $src
-}
-
-$fstr = "https://www.woonmensen.nl/media/1112/handtekening.png"
-if ((Get-Content $src | %{$_ -match $fstr}) -contains $true) {
-	write-host "De handtekening wordt gewijzigd, verwijzing naar de publieke website"
+	write-host "De handtekening wordt gewijzigd, verwijzing naar de nieuwe publieke website"
     $s = [RegEx]::escape($fstr)
     (Get-Content $src) -replace $s,$tstr | Set-Content $src
 }

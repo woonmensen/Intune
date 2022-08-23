@@ -65,7 +65,7 @@ $sd = "\\fs02\install\_Software_Woonmensen\Standaard\OpenVPN"
 $td = "$ENV:USERPROFILE\OpenVPN\config\ras.woonmensen.nl-medewerkers"
 if (test-path "$sd"){
 	write-host "De OpenVPN configuratie wordt gekopieerd"
-	mkdir "$td"
+	New-Item -ItemType Directory -Force -Path "$td"
 	if (test-path "$td"){
 		copy "$sd\ras.woonmensen.nl-medewerkers.ovpn" "$td"
 	}

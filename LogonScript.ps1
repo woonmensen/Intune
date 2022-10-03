@@ -53,10 +53,16 @@ if (test-path "$s"){
 	
 	# Copy actie starten:
     $t = "$ENV:APPDATA\Microsoft\Word\Startup"
+	if (-not (Test-Path "$t")){
+		New-Item -ItemType Directory -Force -Path "$t"
+	}
     xcopy "$s" "$t" /D /Q /Y /R /C /K /I
     
     $s = "$basedir\WordSjablonen\Sjablonen"
     $t = "$ENV:APPDATA\Microsoft\WM-Sjablonen"
+	if (-not (Test-Path "$t")){
+		New-Item -ItemType Directory -Force -Path "$t"
+	}
     xcopy "$s" "$t" /D /Q /Y /R /C /K /S /I
 }
 

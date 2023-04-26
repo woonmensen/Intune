@@ -21,7 +21,7 @@ Remove-Item "$env:userprofile\Desktop\Microsoft Edge.lnk" -ErrorAction Ignore
 # Maak een default handtekening in Outlook, indien deze nog niet bestaat.
 # Niet overschrijven, de gebruiker zal deze aangepast hebben.
 $s = "$basedir\Outlook\woonmensen.htm"
-$t = "$ENV:APPDATA\Microsoft\Signatures\woonmensen.htm"
+$t = "$ENV:APPDATA\Microsoft\Signatures\woonmensen ($ENV:USERNAME@woonmensen.nl).htm"
 if (-not (Test-Path "$t")){
 	New-Item -ItemType Directory -Force -Path "$ENV:APPDATA\Microsoft\Signatures"
 	write-host "Nieuwe handtekening: $t"

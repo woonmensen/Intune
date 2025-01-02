@@ -40,7 +40,7 @@ $driveMappingConfig+=  [PSCUSTOMOBJECT]@{
 
 $driveMappingConfig+=  [PSCUSTOMOBJECT]@{
     DriveLetter = "T"
-    UNCPath= "\\fs02\tvb"
+    UNCPath= "\\fs3\tvb"
     Description="TVB"
 }
 

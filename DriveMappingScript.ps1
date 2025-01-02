@@ -85,7 +85,7 @@ do {
 Write-Output "smb mappings:"
 Get-SmbMapping
 Write-Output "Removing obsolete mappings"
-Get-SmbMapping | Where-Object { $_.RemotePath -eq '\\fs02\tvb' } | Remove-SmbMapping
+Get-SmbMapping | Where-Object { $_.RemotePath -eq '\\fs02\tvb' } | Remove-SmbMapping -Force
 Get-SmbMapping
 
 #Map drives

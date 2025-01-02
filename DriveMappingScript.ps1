@@ -82,10 +82,14 @@ do {
 }while( -not ($Connected))
 
 #Remove old drives (temp)
-Remove-PSDrive -Name T -Force
+Write-Output "smb mappings:"
+Get-SmbMapping
+Write-Output "Removing obsolete mappings"
+Get-SmbMapping | Where-Object { $_.RemotePath -eq '\\fs02\tvb' } | Remove-SmbMapping
+Get-SmbMapping
 
 #Map drives
-    $driveMappingConfig.GetEnumerator() | ForEach-Object {
+$driveMappingConfig.GetEnumerator() | ForEach-Object {
 
         Write-Output "Mapping network drive $($PSItem.UNCPath)"
 

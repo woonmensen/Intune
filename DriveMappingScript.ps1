@@ -81,6 +81,9 @@ do {
  
 }while( -not ($Connected))
 
+#Remove old drives (temp)
+Remove-PSDrive -Name T -Force
+
 #Map drives
     $driveMappingConfig.GetEnumerator() | ForEach-Object {
 

@@ -1,6 +1,6 @@
 Start-Transcript -Path $(Join-Path $env:temp "LogonScript.log")
 
-$basedir = "\\fs02\install\_Intune"
+$basedir = "\\fs3\install\_Intune"
 
 ######################################################################
 #                reg files inlezen                                   #
@@ -67,7 +67,7 @@ if (test-path "$s"){
 }
 
 # OpenVPN instellingen kopieren:
-$sd = "\\fs02\install\_Software_Woonmensen\Standaard\OpenVPN\ras.woonmensen.nl-medewerkers"
+$sd = "\\fs3\install\_Software_Woonmensen\Standaard\OpenVPN\ras.woonmensen.nl-medewerkers"
 $td = "$ENV:USERPROFILE\OpenVPN\config\ras.woonmensen.nl-medewerkers"
 if (test-path "$sd"){
 	write-host "De OpenVPN configuratie wordt gekopieerd"

@@ -14,40 +14,88 @@ $driveMappingConfig=@()
 
 $dnsDomainName= "wm.local"
 
-$driveMappingConfig+= [PSCUSTOMOBJECT]@{
-    DriveLetter = "F"
-    UNCPath= "\\fs02\progs"
-    Description="Programmas"
+if ( Test-Path \\fs3\install\f_fs3.txt ) {
+	$driveMappingConfig+= [PSCUSTOMOBJECT]@{
+    		DriveLetter = "F"
+    		UNCPath= "\\fs3\progs"
+    		Description="Programmas"
+	}
+} else {
+	$driveMappingConfig+= [PSCUSTOMOBJECT]@{
+    		DriveLetter = "F"
+    		UNCPath= "\\fs02\progs"
+    		Description="Programmas"
+	}
 }
 
-$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
-    DriveLetter = "G"
-    UNCPath= "\\fs02\data"
-    Description="Data"
+if ( Test-Path \\fs3\install\g_fs3.txt ) {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+		DriveLetter = "G"
+		UNCPath= "\\fs3\data"
+		Description="Data"
+	}
+} else {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "G"
+	    UNCPath= "\\fs02\data"
+	    Description="Data"
+	}
 }
 
-$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
-    DriveLetter = "H"
-    UNCPath= "\\fs02\data_alg"
-    Description="Data Algemeen"
+if ( Test-Path \\fs3\install\h_fs3.txt ) {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "H"
+	    UNCPath= "\\fs3\data_alg"
+	    Description="Data Algemeen"
+	}
+} else {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "H"
+	    UNCPath= "\\fs02\data_alg"
+	    Description="Data Algemeen"
+	}
 }
 
-$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
-    DriveLetter = "S"
-    UNCPath= "\\fs02\scans"
-    Description="Scans"
+if ( Test-Path \\fs3\install\s_fs3.txt ) {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "S"
+	    UNCPath= "\\fs3\scans"
+	    Description="Scans"
+	}
+} else {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "S"
+	    UNCPath= "\\fs02\scans"
+	    Description="Scans"
+	}
 }
 
-$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
-    DriveLetter = "T"
-    UNCPath= "\\fs3\tvb"
-    Description="TVB"
+if ( Test-Path \\fs3\install\t_fs3.txt ) {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "T"
+	    UNCPath= "\\fs3\tvb"
+	    Description="TVB"
+	}
+} else {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "T"
+	    UNCPath= "\\fs02\tvb"
+	    Description="TVB"
+	}
 }
 
-$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
-    DriveLetter = "U"
-    UNCPath= "\\fs02\data\PersoonlijkeMappen\$env:USERNAME"
-    Description="Persoonlijke Mappen"
+if (Test-Path \\fs3\install\u_fs3.txt) {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "U"
+	    UNCPath= "\\fs02\data\PersoonlijkeMappen\$env:USERNAME"
+	    Description="Persoonlijke Mappen"
+	}
+} else {
+	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
+	    DriveLetter = "U"
+	    UNCPath= "\\fs3\data\PersoonlijkeMappen\$env:USERNAME"
+	    Description="Persoonlijke Mappen"
+	}
 }
 
 ######################################################################
@@ -81,11 +129,12 @@ do {
  
 }while( -not ($Connected))
 
-#Remove old drives (temp)
+#Remove old mappings
 Write-Output "smb mappings:"
 Get-SmbMapping
 Write-Output "Removing obsolete mappings"
-Get-SmbMapping | Where-Object { $_.RemotePath -eq '\\fs02\tvb' } | Remove-SmbMapping -Force
+Get-SmbMapping | Remove-SmbMapping -Force
+#Get-SmbMapping | Where-Object { $_.RemotePath -eq '\\fs02\tvb' } | Remove-SmbMapping -Force
 Get-SmbMapping
 
 #Map drives

@@ -87,13 +87,13 @@ if ( Test-Path \\fs3\install\t_fs3.txt ) {
 if (Test-Path \\fs3\install\u_fs3.txt) {
 	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
 	    DriveLetter = "U"
-	    UNCPath= "\\fs02\data\PersoonlijkeMappen\$env:USERNAME"
+	    UNCPath= "\\fs3\data\PersoonlijkeMappen\$env:USERNAME"
 	    Description="Persoonlijke Mappen"
 	}
 } else {
 	$driveMappingConfig+=  [PSCUSTOMOBJECT]@{
 	    DriveLetter = "U"
-	    UNCPath= "\\fs3\data\PersoonlijkeMappen\$env:USERNAME"
+	    UNCPath= "\\fs02\data\PersoonlijkeMappen\$env:USERNAME"
 	    Description="Persoonlijke Mappen"
 	}
 }
